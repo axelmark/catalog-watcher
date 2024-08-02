@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 @Component
 @EnableAsync
-public class CatalogScannerService {
+public class CatalogWatcherService {
     private final ExecutorService executorService;
     private final List<String> allowedExtensions;
     Logger logger = Logger.getLogger("catalogWatcherLog");
@@ -26,7 +26,7 @@ public class CatalogScannerService {
     private final CatalogRepository catalogRepository;
 
     @Autowired
-    public CatalogScannerService(@Value("${max-threads}") int maxThreads,
+    public CatalogWatcherService(@Value("${max-threads}") int maxThreads,
                                  @Value("${allowed-extensions}") String allowedExtensions, CatalogRepository catalogRepository) {
         this.executorService = Executors.newFixedThreadPool(maxThreads);
         this.allowedExtensions = Arrays.asList(allowedExtensions.split(","));
