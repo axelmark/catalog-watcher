@@ -37,7 +37,6 @@ public class CatalogScannerService {
     @Scheduled(fixedDelayString = "${scan-interval}")
     public void scanCatalog() {
         List<Catalog> catalogs = catalogRepository.findAll();
-
         for (Catalog catalog : catalogs) {
             executorService.submit(() -> scanCatalog(catalog.getPath()));
         }
